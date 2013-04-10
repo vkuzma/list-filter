@@ -1,7 +1,31 @@
 function filter_list(list, filters) {
 	var filter_actions = {
 		'exact': function(value, filter_value) {
-			if(value == filter_value)
+			if(value === filter_value)
+				return true;
+			else
+				return false;
+		},
+		'iexact': function() {
+			if(value.toLowerCase() === filter_value.toLowerCase())
+				return true;
+			else
+				return false;
+		},
+		'contains': function(value, filter_value) {
+			if(value.match(filter_value))
+				return true;
+			else
+				return false;
+		},
+		'icontains': function(value, filter_value) {
+			if(value.toLowerCase().match(filter_value.toLowerCase()))
+				return true;
+			else
+				return false;
+		},
+		'in': function(value, filter_value) {
+			if(filter_value in value)
 				return true;
 			else
 				return false;
